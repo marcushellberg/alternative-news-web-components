@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "dependencies": {
-    "lit-html": "^0.10.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "serve": "^6.5.7"
   },
