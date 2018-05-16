@@ -48,7 +48,7 @@ Then, implement the `fetchArticles`-function.
 ```js
 async function fetchArticles() {
   const res = await fetch(
-    'https://newsapi.org/v2/top-headlines?apiKey=' + apiKey
+    'https://newsapi.org/v2/top-headlines?country=us&apiKey=' + apiKey
   );
   const json = await res.json();
 }
@@ -365,8 +365,7 @@ const staticAssets = [
   './',
   './index.html',
   './styles.css',
-  //if you did extra credit:
-  './node_modules/lit-html/lit-html.js',
+  //if you did extra credit: './node_modules/lit-html/lit-html.js',
   './app.js'
 ];
 ```
@@ -409,7 +408,7 @@ With our static content cached, we can add another listener for `fetch` events a
 
 ```js
 self.addEventListener('fetch', async e => {
-  e.respondWith(cacheFirst(req));
+  e.respondWith(cacheFirst(e.request));
 });
 
 async function cacheFirst(req) {
@@ -479,7 +478,11 @@ self.addEventListener('activate', e => {
 Finally, add two fallback files to the static assets array:
 
 ```js
-const staticAssets = [...'./fallback.json', './images/fetch-dog.jpg'];
+const staticAssets = [
+  // ...
+  './fallback.json',
+  './images/fetch-dog.jpg'
+];
 ```
 
 **Refresh your browser** and make sure the new ServiceWorker got loaded. You should start seeing API calls getting cached if you look at the Cache Storage section of the Application tab.
