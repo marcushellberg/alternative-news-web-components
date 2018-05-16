@@ -1,0 +1,29 @@
+{
+  "name": "alternative-news-web-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "lit-html": "^0.10.0"
+  },
+  "devDependencies": {
+    "serve": "^6.5.7"
+  },
+  "scripts": {
+    "serve": "serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url":
+      "git+https://github.com/marcushellberg/alternative-news-web-components.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url":
+      "https://github.com/marcushellberg/alternative-news-web-components/issues"
+  },
+  "homepage":
+    "https://github.com/marcushellberg/alternative-news-web-components#readme"
+}

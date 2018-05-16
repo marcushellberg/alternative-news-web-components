@@ -7,19 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Alternative News</title>
   <link rel="stylesheet" href="./styles.css">
-  <link rel="import" href="bower_components/vaadin-combo-box/vaadin-combo-box.html">
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="./manifest.json">
 </head>
 
 <body>
   <header>
     <h1>Alternative news</h1>
-    <vaadin-combo-box placeholder="Select news source" item-label-path="name" item-value-path="id"></vaadin-combo-box>
-
+    <select id="sources"></select>
   </header>
   <main></main>
-  <script src="./news-article.js"></script>
-  <script src="./app.js"></script>
+  <script src="./app.js" type="module"></script>
 </body>
 
 </html>

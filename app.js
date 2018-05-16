@@ -1,6 +1,7 @@
-const apiKey = 'http://newsapi.org/';
+import './news-article.js';
+const apiKey = '7f65a98cdbf1496088f8cb61e23fd2e8';
 
-window.addEventListener('load', async () => {
+window.addEventListener('load', () => {
   setupSources();
   fetchArticles();
   registerSW();
@@ -19,15 +20,18 @@ async function registerSW() {
 }
 
 async function setupSources() {
-  const res = await fetch('https://newsapi.org/v2/sources?apiKey=' + apiKey);
-  const json = await res.json();
+  const sourceSelector = document.querySelector('#sources');
+  const response = await fetch(
+    `https://newsapi.org/v2/sources?apiKey=${apiKey}`
+  );
+  const json = await response.json();
+  sourceSelector.innerHTML = json.sources
+    .map(source => `<option value="${source.id}">${source.name}</option>`)
+    .join('\n');
 
-  const sourceSelector = document.querySelector('vaadin-combo-box');
-  sourceSelector.items = json.sources;
-
-  sourceSelector.addEventListener('value-changed', e => {
-    fetchArticles(sourceSelector.value);
-  });
+  sourceSelector.addEventListener('change', evt =>
+    fetchArticles(evt.target.value)
+  );
 }
 
 async function fetchArticles(source) {

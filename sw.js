@@ -1,17 +1,27 @@
+// Last updated: 2018-05-16 15:49
+// Update the comment above to ensure new cache versions get picked up
+
 const cacheName = 'news-v1';
 const staticAssets = [
   './',
   './index.html',
   './styles.css',
   './app.js',
+  './node_modules/lit-html/lit-html.js',
   './fallback.json',
   './images/fetch-dog.jpg'
 ];
 
 self.addEventListener('install', async e => {
   const cache = await caches.open(cacheName);
-  cache.addAll(staticAssets);
+  await cache.addAll(staticAssets);
+  return self.skipWaiting();
 });
+
+self.addEventListener('activate', e => {
+  self.clients.claim();
+});
+
 self.addEventListener('fetch', async e => {
   const req = e.request;
   const url = new URL(req.url);
@@ -26,7 +36,7 @@ self.addEventListener('fetch', async e => {
 async function cacheFirst(req) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(req);
-  return cached || networkAndCache(req);
+  return cached || fetch(req);
 }
 
 async function networkAndCache(req) {
