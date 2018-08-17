@@ -7,6 +7,7 @@ const staticAssets = [
   './index.html',
   './styles.css',
   './app.js',
+  './news-article.js',
   './node_modules/lit-html/lit-html.js',
   './fallback.json',
   './images/fetch-dog.jpg'
